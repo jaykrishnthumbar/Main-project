@@ -1,0 +1,34 @@
+package com.onerivet.deskbook.services.impl;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onerivet.deskbook.models.payload.CityDto;
+import com.onerivet.deskbook.repository.CityRepo;
+import com.onerivet.deskbook.services.FloorService;
+
+@Service
+public class FloorServiceImpl implements FloorService{
+	
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	@Autowired
+	private CityRepo cityRepo;
+
+	@Override
+	public Set<CityDto> getAll() {
+		return cityRepo.findAll().stream().map(all -> this.modelMapper.map(all, CityDto.class)).collect(Collectors.toSet());
+	}
+
+	@Override
+	public CityDto geyById() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

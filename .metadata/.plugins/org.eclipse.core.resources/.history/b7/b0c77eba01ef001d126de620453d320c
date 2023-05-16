@@ -1,0 +1,43 @@
+package com.onerivet.deskbook.controllers;
+
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.onerivet.deskbook.models.payload.ColumnDetailsDto;
+import com.onerivet.deskbook.models.payload.FloorDto;
+import com.onerivet.deskbook.models.payload.SeatNumberDto;
+import com.onerivet.deskbook.services.FloorService;
+
+@RestController
+@RequestMapping("/api")
+public class FloorController {
+	
+	@Autowired
+	private FloorService floorService;
+	
+	@GetMapping("/floor")
+	public Set<FloorDto> getAll(){
+		return floorService.getAll();
+	}
+	
+	@GetMapping("/floor/{id}")
+	public FloorDto getById(@PathVariable int id) {
+		return floorService.geyById(id);
+	}
+	
+	@GetMapping("/column")
+	public Set<ColumnDetailsDto> getAllColumn(){
+		return floorService.getAllColumn();
+	}
+
+	@GetMapping("/column")
+	public List<SeatNumberDto> getAllSeat(){
+		return floorService.getAllSeat();
+	}
+}

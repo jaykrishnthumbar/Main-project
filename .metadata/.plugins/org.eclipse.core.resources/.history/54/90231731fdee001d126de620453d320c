@@ -1,0 +1,13 @@
+package com.onerivet.deskbook.services;
+
+import java.util.Set;
+
+import com.onerivet.deskbook.models.payload.CityDto;
+
+public interface FloorService {
+	
+	public Set<CityDto> getAll();
+	
+	public CityDto geyById(int id);
+
+}

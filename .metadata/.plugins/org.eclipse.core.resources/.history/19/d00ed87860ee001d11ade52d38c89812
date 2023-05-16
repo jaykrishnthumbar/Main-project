@@ -1,0 +1,32 @@
+package com.onerivet.deskbook.services.impl;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.onerivet.deskbook.repository.ModeOfWorkRepo;
+import com.onerivet.deskbook.services.ModeOfWorkService;
+
+public class ModeOfWorkServiceImpl implements ModeOfWorkService{
+	
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	@Autowired
+	private ModeOfWorkRepo modeOfWorkRepo;
+
+	@Override
+	public Set<ModeOfWorkRepo> getAll() {
+		return modeOfWorkRepo.findAll().stream().map((modeOfWork) ->this.modelMapper.map(modeOfWork, ModeOfWorkRepo.class)).collect(Collectors.toList());
+	}
+
+	@Override
+	public ModeOfWorkRepo getById() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

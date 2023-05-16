@@ -1,0 +1,28 @@
+package com.onerivet.deskbook.services.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.onerivet.deskbook.models.payload.CityDto;
+import com.onerivet.deskbook.services.CityService;
+
+import jakarta.transaction.Transactional;
+
+@Transactional
+@Service
+public class CityServiceImpl implements CityService{
+
+	@Override
+	public List<CityDto> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CityDto getCityByuId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

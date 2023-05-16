@@ -1,0 +1,73 @@
+package com.onerivet.deskbook.services.impl;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onerivet.deskbook.exception.ResourceNotFoundException;
+import com.onerivet.deskbook.models.entity.Floor;
+import com.onerivet.deskbook.models.payload.ColumnDetailsDto;
+import com.onerivet.deskbook.models.payload.FloorDto;
+import com.onerivet.deskbook.models.payload.SeatNumberDto;
+import com.onerivet.deskbook.repository.ColumnDetailsRepo;
+import com.onerivet.deskbook.repository.FloorRepo;
+import com.onerivet.deskbook.repository.SeatNumberRepo;
+import com.onerivet.deskbook.services.FloorService;
+
+import jakarta.transaction.Transactional;
+
+@Transactional
+@Service
+public class FloorServiceImpl implements FloorService{
+	
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	@Autowired
+	private FloorRepo floorRepo;
+	
+	@Autowired
+	private ColumnDetailsRepo columnDetailsRepo;
+	
+	@Autowired
+	private SeatNumberRepo seatNumberRepo;
+
+	@Override
+	public Set<FloorDto> getAll() {
+		return floorRepo.findAll().stream().map(all -> this.modelMapper.map(all, FloorDto.class)).collect(Collectors.toSet());
+	}
+
+	@Override
+	public FloorDto geyById(int id) {
+		Floor floor = floorRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Floor not found..."));
+		return this.modelMapper.map(floor, FloorDto.class);
+	}
+
+	@Override
+	public Set<ColumnDetailsDto> getAllColumn() {
+		return columnDetailsRepo.findAll().stream().map(allColumn -> this.modelMapper.map(allColumn, ColumnDetailsDto.class)).collect(Collectors.toSet());
+	}
+
+	@Override
+	public ColumnDetailsDto getColumnById() {
+		Columns columns = 
+		return null;
+	}
+
+	@Override
+	public List<SeatNumberDto> getAllSeat() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SeatNumberDto getSeatById() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

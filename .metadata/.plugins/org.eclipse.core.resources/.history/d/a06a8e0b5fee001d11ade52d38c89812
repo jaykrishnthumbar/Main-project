@@ -1,0 +1,7 @@
+package com.onerivet.deskbook.services.impl;
+
+import com.onerivet.deskbook.services.ModeOfWorkService;
+
+public class ModeOfWorkServiceImpl implements ModeOfWorkService{
+
+}

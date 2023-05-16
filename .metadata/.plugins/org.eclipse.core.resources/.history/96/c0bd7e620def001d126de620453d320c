@@ -1,0 +1,24 @@
+package com.onerivet.deskbook.services;
+
+import java.util.List;
+import java.util.Set;
+
+import com.onerivet.deskbook.models.payload.ColumnDetailsDto;
+import com.onerivet.deskbook.models.payload.FloorDto;
+import com.onerivet.deskbook.models.payload.SeatNumberDto;
+
+public interface FloorService {
+	
+	public Set<FloorDto> getAll();
+	
+	public FloorDto geyById(int id);
+	
+	public Set<ColumnDetailsDto> getAllColumn();
+	
+	public ColumnDetailsDto getColumnById(int id);
+	
+	public List<SeatNumberDto> getAllSeat();
+	
+	public SeatNumberDto getSeatById(int id);
+
+}

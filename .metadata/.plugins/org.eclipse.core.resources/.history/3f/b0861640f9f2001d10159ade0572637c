@@ -1,0 +1,27 @@
+package com.onerivet.deskbook.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.onerivet.deskbook.models.payload.UpdateDto;
+import com.onerivet.deskbook.services.EmployeeService;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+@RestController
+@RequestMapping("/api/update")
+public class UpdateController {
+	
+	@Autowired
+	private EmployeeService employeeService;
+	
+	@PutMapping("/{id}")
+	public UpdateDto update (@PathVariable int id,@RequestBody UpdateDto updateDto) {
+		return employeeService.update(id, updateDto);
+		
+	}
+
+}

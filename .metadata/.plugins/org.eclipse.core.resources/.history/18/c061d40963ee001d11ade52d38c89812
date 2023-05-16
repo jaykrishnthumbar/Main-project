@@ -1,0 +1,35 @@
+package com.onerivet.deskbook.services.impl;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.onerivet.deskbook.exception.ResourceNotFoundException;
+import com.onerivet.deskbook.models.entity.ModeOfWork;
+import com.onerivet.deskbook.models.payload.ModeOfWorkDto;
+import com.onerivet.deskbook.repository.ModeOfWorkRepo;
+import com.onerivet.deskbook.services.ModeOfWorkService;
+
+public class ModeOfWorkServiceImpl implements ModeOfWorkService{
+	
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	@Autowired
+	private ModeOfWorkRepo modeOfWorkRepo;
+
+	@Override
+	public Set<ModeOfWorkDto> getAll() {
+		return modeOfWorkRepo.findAll().stream().map((modeOfWork) -> this.modelMapper.map(modeOfWork, ModeOfWorkDto.class)).collect(Collectors.toSet());
+	}
+
+	@Override
+	public ModeOfWorkDto getById(int id) {
+		ModeOfWork modeOfWork = modeOfWorkRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Mode of work not found..."));
+		return this.modelMapper.map(modeOfWork, ModeOfWorkDto.class);
+	}
+
+}

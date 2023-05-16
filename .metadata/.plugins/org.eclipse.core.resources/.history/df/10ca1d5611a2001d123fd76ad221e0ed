@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+class Student{
+	Scanner scan = new Scanner(System.in );
+	int id;
+	String name;
+	private long number;
+	
+	public long getnumber() {
+		return number;
+	}
+	
+	public void setnumber(long number) {
+		this.number = number;
+	}
+	
+	 public void PrintDetails(){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Student id is: " +id);
+		System.out.println("Student name is: " +name);
+		System.out.println("Student enroll-no is: " +this.getnumber());
+	}
+}
+
+
+public class Custom_class {
+
+	public static void main(String[] args) {
+
+		
+		Student i = new Student();
+		Student j = new Student();
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter the id: ");
+		i.id = scan.nextInt();
+		scan.nextLine();
+		
+		System.out.print("Enter the name: ");
+		i.name = scan.nextLine();
+		
+		System.out.print("Enter the enroll-no: ");
+		
+		i.setnumber(scan.nextLong());
+		
+		System.out.print("Enter the id: ");
+		j.id = scan.nextInt();
+		scan.nextLine();
+		
+		System.out.print("Enter the name: ");
+		j.name = scan.nextLine();
+		
+		System.out.print("Enter the enroll-no: ");
+		j.setnumber(scan.nextLong());
+		System.out.println();
+		
+		
+		
+		i.PrintDetails();
+		j.PrintDetails();
+
+	}
+
+}

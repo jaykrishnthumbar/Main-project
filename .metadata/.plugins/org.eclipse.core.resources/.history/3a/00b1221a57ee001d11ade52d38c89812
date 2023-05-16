@@ -1,0 +1,13 @@
+package com.onerivet.deskbook.services.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.onerivet.deskbook.services.CityService;
+
+import jakarta.transaction.Transactional;
+
+@Transactional
+@Service
+public class CityServiceImpl implements CityService{
+
+}

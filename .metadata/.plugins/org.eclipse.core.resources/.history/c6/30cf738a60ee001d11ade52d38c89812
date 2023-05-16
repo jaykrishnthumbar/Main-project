@@ -1,0 +1,22 @@
+package com.onerivet.deskbook.services;
+
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.stereotype.Service;
+
+import com.onerivet.deskbook.repository.ModeOfWorkRepo;
+
+import jakarta.transaction.Transactional;
+
+@Transactional
+@Service
+public interface ModeOfWorkService {
+	
+	public Set<ModeOfWorkDto> getAll();
+	
+	public ModeOfWorkRepo getById();
+	
+
+
+}

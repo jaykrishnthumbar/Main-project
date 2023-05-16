@@ -1,0 +1,40 @@
+package com.onerivet.deskbook.services.impl;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onerivet.deskbook.exception.ResourceNotFoundException;
+import com.onerivet.deskbook.models.entity.City;
+import com.onerivet.deskbook.models.payload.CityDto;
+import com.onerivet.deskbook.models.payload.FloorDto;
+import com.onerivet.deskbook.repository.FloorRepo;
+import com.onerivet.deskbook.services.FloorService;
+
+import jakarta.transaction.Transactional;
+
+@Transactional
+@Service
+public class FloorServiceImpl implements FloorService{
+	
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	@Autowired
+	private FloorRepo floorRepo;
+
+	@Override
+	public List<FloorDto> getAll() {
+		return floorRepo.findAll().stream().map(all -> this.modelMapper.map(all, FloorDto.class)).collect(Collectors.toList());
+	}
+
+	@Override
+	public CityDto geyById(int id) {
+		City city = floorRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Floor not found..."));
+		return this.modelMapper.map(city, CityDto.class);
+	}
+
+}

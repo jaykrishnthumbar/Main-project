@@ -1,0 +1,31 @@
+package com.src2;
+
+import java.util.Scanner;
+
+public class Reversestring {
+	static String reversestring(String str) {
+		
+		System.out.println(str);
+		
+		if(str.isEmpty()) 
+		{
+		System.out.println("String is empty..");
+		return str;
+		}
+		
+		else 
+		{
+			return reversestring(str.substring(1))+str.charAt(0);
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String str = scan.next();
+		
+		String g=reversestring(str);
+		System.out.println(g);
+
+	}
+
+}

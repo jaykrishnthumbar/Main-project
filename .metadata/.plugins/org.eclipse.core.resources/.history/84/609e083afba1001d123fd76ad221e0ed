@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+class Student{
+	Scanner scan = new Scanner(System.in );
+	int id;
+	String name;
+	
+	 public void PrintDetails(){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter the id: ");
+		System.out.println("Enter the name: ");
+		System.out.println("Student id is: " +id);
+		System.out.println("Student name is: " +name);
+	}
+}
+
+
+public class Custom_class {
+
+	public static void main(String[] args) {
+
+		
+		Student i = new Student();
+		Student j = new Student();
+		
+		Scanner scan = new Scanner(System.in);
+		i.id = scan.nextInt();
+		i.name = scan.nextLine();
+		j.id = scan.nextInt();
+		j.name = scan.nextLine();
+		
+		i.PrintDetails();
+		j.PrintDetails();
+
+	}
+
+}

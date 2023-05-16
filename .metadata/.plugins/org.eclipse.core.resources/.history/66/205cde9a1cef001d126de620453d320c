@@ -1,0 +1,58 @@
+package com.onerivet.deskbook.services.impl;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onerivet.deskbook.exception.ResourceNotFoundException;
+import com.onerivet.deskbook.models.entity.Designation;
+import com.onerivet.deskbook.models.entity.Employee;
+import com.onerivet.deskbook.models.entity.ModeOfWork;
+import com.onerivet.deskbook.models.payload.EmployeeDto;
+import com.onerivet.deskbook.repository.EmployeeRepo;
+import com.onerivet.deskbook.services.EmployeeService;
+
+import jakarta.transaction.Transactional;
+
+@Transactional
+@Service
+public class EmployeeServiceImpl implements EmployeeService {
+
+	@Autowired
+	private EmployeeRepo employeeRepo;
+
+
+	@Autowired
+	private ModelMapper modelMapper;
+
+	@Override
+	public List<EmployeeDto> getAllEmployees() {
+		return this.employeeRepo.findAll().stream().map((employee) -> this.modelMapper.map(employee, EmployeeDto.class))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public EmployeeDto getEmployeeById(int id) {
+		Employee employee = this.employeeRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Employee with id " + id + " not found."));
+		return this.modelMapper.map(employee, EmployeeDto.class);
+	}
+
+	@Override
+	public EmployeeDto update(int id, EmployeeDto employeeDto) {
+		Employee employee = employeeRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not found..."));
+		
+		employee.setId(employeeDto.getId());
+		employee.setFirstName(employeeDto.getFirstName());
+		employee.setLastName(employeeDto.getLastName());
+		employee.setPhoneNumber(employeeDto.getPhoneNumber());
+		employee.setProject(employeeDto.getProject());
+		employee.setDesignation(modelMapper.map(employeeDto.getDesignation(), Designation.class));
+		employee.setModeOfWork(modelMapper.map(employeeDto.getModeOfWork(), ModeOfWork.class));
+		return null;
+	}
+
+}

@@ -1,0 +1,26 @@
+package com.onerivet.deskbook.controllers;
+
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.onerivet.deskbook.models.payload.FloorDto;
+import com.onerivet.deskbook.repository.FloorRepo;
+
+@RestController
+@RequestMapping("/api/floor")
+public class FloorController {
+	
+	@Autowired
+	private FloorRepo floorRepo;
+	
+	@GetMapping("/")
+	public Set<FloorDto> getAll(){
+		return floorRepo.findAll();
+		
+	}
+
+}

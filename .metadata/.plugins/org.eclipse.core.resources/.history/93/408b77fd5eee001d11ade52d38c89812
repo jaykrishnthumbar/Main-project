@@ -1,0 +1,21 @@
+package com.onerivet.deskbook.services;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onerivet.deskbook.repository.ModeOfWorkRepo;
+
+import jakarta.transaction.Transactional;
+
+@Transactional
+@Service
+public interface ModeOfWorkService {
+	
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	@Autowired
+	private ModeOfWorkRepo modeOfWorkRepo;
+
+}

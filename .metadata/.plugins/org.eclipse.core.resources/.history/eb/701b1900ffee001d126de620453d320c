@@ -1,0 +1,13 @@
+package com.onerivet.deskbook.services;
+
+import java.util.Set;
+
+import com.onerivet.deskbook.models.payload.FloorDto;
+
+public interface FloorService {
+	
+	public Set<FloorDto> getAll();
+	
+	public FloorDto geyById(int id);
+
+}
